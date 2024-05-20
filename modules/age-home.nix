@@ -8,7 +8,7 @@
 with lib; let
   cfg = config.age;
 
-  ageBin = lib.getExe config.age.package;
+  ageBin = config.age.ageBin;
 
   newGeneration = ''
     _agenix_generation="$(basename "$(readlink "${cfg.secretsDir}")" || echo 0)"
@@ -163,6 +163,17 @@ in {
       description = ''
         Attrset of secrets.
       '';
+
+    ageBin = mkOption {
+      type = types.str;
+      default = "${lib.getExe config.age.package}";
+      defaultText = literalExpression ''
+        "''${lib.getExe config.age.package}"
+      '';
+      description = ''
+        The age executable to use.
+      '';
+    };
     };
 
     identityPaths = mkOption {
