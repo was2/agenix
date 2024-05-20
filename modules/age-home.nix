@@ -163,7 +163,8 @@ in {
       description = ''
         Attrset of secrets.
       '';
-
+    };
+    
     ageBin = mkOption {
       type = types.str;
       default = "${lib.getExe config.age.package}";
@@ -173,7 +174,6 @@ in {
       description = ''
         The age executable to use.
       '';
-    };
     };
 
     identityPaths = mkOption {
